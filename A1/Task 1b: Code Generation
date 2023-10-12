@@ -1,3 +1,14 @@
-public enum MembershipType {
-    REGULAR, SILVER, GOLD
+// Membership Class
+public class Membership {
+    
+    private String type;
+    private double discount;
+
+    public string getType() {
+        return type;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
 }
