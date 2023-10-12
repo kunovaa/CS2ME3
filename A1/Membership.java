@@ -5,7 +5,7 @@ public abstract class Membership {
     private String type;
     private double discount;
 
-    public string getType() {
+    public String getType() {
         return type;
     }
 
