@@ -1,14 +1,13 @@
 import java.util.Scanner;
-
 public class ReservationREPL {
-    public enum CodeGeneration {
+    public enum Membership {
         REGULAR(0),
         SILVER(10),
         GOLD(20);
     
         private final int discountPercentage;
     
-        CodeGeneration(int discountPercentage) {
+        Membership(int discountPercentage) {
             this.discountPercentage = discountPercentage;
         }
     
@@ -21,9 +20,9 @@ public class ReservationREPL {
         private int clientID;
         private String name;
         private String contactInfo;
-        private CodeGeneration membershipType;
+        private Membership membershipType;
     
-        public Client(int clientID, String name, String contactInfo, CodeGeneration membershipType) {
+        public Client(int clientID, String name, String contactInfo, Membership membershipType) {
             this.clientID = clientID;
             this.name = name;
             this.contactInfo = contactInfo;
@@ -42,14 +41,13 @@ public class ReservationREPL {
             return contactInfo;
         }
     
-        public CodeGeneration getMembershipType() {
+        public Membership getMembershipType() {
             return membershipType;
         }
     
-        public void setMembershipType(CodeGeneration membershipType) {
+        public void setMembershipType(Membership membershipType) {
             this.membershipType = membershipType;
         }
-    
     }
     
     public class Booking {
@@ -82,7 +80,7 @@ public class ReservationREPL {
         }
     
         public double calculateTotalCost() {
-            // Calculation for total cost
+            // Calculation of total cost
             return totalCost;
         }
     
@@ -100,6 +98,7 @@ public class ReservationREPL {
         }
     
     }
+    
     public class Car extends Service {
         private String licensePlate;
         private int year;
@@ -129,6 +128,7 @@ public class ReservationREPL {
         public int getNumberOfDoors() {
             return numberOfDoors;
         }
+    
     }
     
     public class Vacation extends Service {
@@ -160,7 +160,8 @@ public class ReservationREPL {
         public double getCost() {
             return cost;
         }
-    }    
+    
+    }       
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
