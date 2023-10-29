@@ -198,7 +198,7 @@ public class ReservationREPL {
                 input = scanner.nextLine(); // gets the item user wants to book
                 // add money to revenue
             } else if (input.equals("4")) { // CANCEL A BOOKING
-                System.out.print("Enter the bookingID for the booking needed to be cancelled.\n")
+                System.out.print("Enter the bookingID for the booking needed to be cancelled.\n");
                 input = scanner.nextLine(); //gets bookingID for booking needed to be cancelled
                 // remove money from revenue
                 // remove booking from the booking list and the user booking list based on booking id
