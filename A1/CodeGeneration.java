@@ -1,11 +1,11 @@
-public enum Membership {
+public enum CodeGeneration {
     REGULAR(0),
     SILVER(10),
     GOLD(20);
 
     private final int discountPercentage;
 
-    Membership(int discountPercentage) {
+    CodeGeneration(int discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
 
@@ -18,9 +18,9 @@ public class Client {
     private int clientID;
     private String name;
     private String contactInfo;
-    private Membership membershipType;
+    private CodeGeneration membershipType;
 
-    public Client(int clientID, String name, String contactInfo, Membership membershipType) {
+    public Client(int clientID, String name, String contactInfo, CodeGeneration membershipType) {
         this.clientID = clientID;
         this.name = name;
         this.contactInfo = contactInfo;
@@ -39,11 +39,11 @@ public class Client {
         return contactInfo;
     }
 
-    public Membership getMembershipType() {
+    public CodeGeneration getMembershipType() {
         return membershipType;
     }
 
-    public void setMembershipType(Membership membershipType) {
+    public void setMembershipType(CodeGeneration membershipType) {
         this.membershipType = membershipType;
     }
 
