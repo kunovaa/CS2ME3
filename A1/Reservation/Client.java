@@ -6,11 +6,12 @@ import java.util.List;
 public class Client {
     private String clientID;
     private String name;
+    private String birthdate;
     private String contactInfo;
     private Membership membershipType;
     private List<Booking> bookings = new ArrayList<>();
 
-    public Client(String clientID, String name, String contactInfo, Membership membershipType) {
+    public Client(String clientID, String name, String birthdate, String contactInfo, Membership membershipType) {
         this.clientID = clientID;
         this.name = name;
         this.contactInfo = contactInfo;
@@ -23,6 +24,10 @@ public class Client {
 
     public String getName() {
         return name;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
     }
 
     public String getContactInfo() {
@@ -41,13 +46,12 @@ public class Client {
         bookings.add(booking);
     }
 
-     public void removeBooking(Booking booking) {
+    public void removeBooking(Booking booking) {
         bookings.remove(booking);
     }
 
     public List<Booking> getBookings() {
         return bookings;
     }
-
 
 }
