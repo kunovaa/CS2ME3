@@ -206,7 +206,6 @@ public class ReservationREPL {
                 int x = 0;
                 while(x != Integer.parseInt(input)){
 
-
                 }
 
             } else if (input.equals("5")) {
