@@ -41,7 +41,7 @@ public class ReservationREPL {
             String input = scanner.nextLine();
 
             if (input.equalsIgnoreCase("exit")) {
-                System.out.println("BYEBYE!");
+                System.out.println("Exiting!");
                 break;
             } // quitting the application
 
@@ -199,17 +199,29 @@ public class ReservationREPL {
 
                 }
 
-            } else if (input.equals("5")) {
+            } Object input;
+            if (input.equals("5")) {
                 // list all the bookings from booking list
                 System.out.println("All Bookings:\n");
                 for (Booking booking : bookings) {
                     System.out.println(booking.getBookingID());
                 }
             } else if (input.equals("6")) {
-                // list the user bookings from the client class
+                System.out.print("Enter the client's ID to list their bookings:\n");
+                input = scanner.nextLine(); // gets clientID to list their bookings
+                for (Client client : clients) {
+                    if (client.getClientID().equals(input)) {
+                        System.out.println("Bookings for Client ID: " + input);
+                        for (Booking booking : client.getBookings()) {
+                            System.out.println("BookingID: " + booking.getBookingID() + " Items: " + booking.getServices()
+                                + " From-to: " + booking.getStartDate() + "-" + booking.getEndDate() + " Price: "
+                                + booking.getTotalCost());
+                        }
+                    }
+            }
             } else if (input.equals("7")) {
                 // output the calculated revenue
             }
-        }
         scanner.close();
+        }
     }

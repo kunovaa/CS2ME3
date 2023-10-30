@@ -41,7 +41,13 @@ public class Client {
         bookings.add(booking);
     }
 
+     public void removeBooking(Booking booking) {
+        bookings.remove(booking);
+    }
+
     public List<Booking> getBookings() {
         return bookings;
     }
+
+
 }

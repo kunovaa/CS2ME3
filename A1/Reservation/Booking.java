@@ -39,6 +39,10 @@ public class Booking {
         services.add(service);
     }
 
+    public List<Service> getServices() {
+        return services;
+    }
+
     public double getTotalCost() {
         return totalCost;
     }
