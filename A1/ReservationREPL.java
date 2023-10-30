@@ -184,7 +184,7 @@ public class ReservationREPL {
                         break;
                     }
                 }
-    
+
                 if (bookingToRemove != null) {
                     Client associatedClient = bookingToRemove.getClient();
                     associatedClient.removeBooking(bookingToRemove);
@@ -194,13 +194,8 @@ public class ReservationREPL {
                     System.out.println("Booking not found.");
                 }
             }
-                int x = 0;
-                while (x != Integer.parseInt(input)) {
 
-                }
-
-            } Object input;
-            if (input.equals("5")) {
+            else if (input.equals("5")) {
                 // list all the bookings from booking list
                 System.out.println("All Bookings:\n");
                 for (Booking booking : bookings) {
@@ -213,15 +208,17 @@ public class ReservationREPL {
                     if (client.getClientID().equals(input)) {
                         System.out.println("Bookings for Client ID: " + input);
                         for (Booking booking : client.getBookings()) {
-                            System.out.println("BookingID: " + booking.getBookingID() + " Items: " + booking.getServices()
-                                + " From-to: " + booking.getStartDate() + "-" + booking.getEndDate() + " Price: "
-                                + booking.getTotalCost());
+                            System.out.println("BookingID: " + booking.getBookingID() + " Items: "
+                                    + booking.getServices()
+                                    + " From-to: " + booking.getStartDate() + "-" + booking.getEndDate() + " Price: "
+                                    + booking.getTotalCost());
                         }
                     }
-            }
+                }
             } else if (input.equals("7")) {
                 // output the calculated revenue
             }
-        scanner.close();
+            scanner.close();
         }
     }
+}
