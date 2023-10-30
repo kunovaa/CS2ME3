@@ -177,12 +177,23 @@ public class ReservationREPL {
             } else if (input.equals("4")) { // CANCEL A BOOKING
                 System.out.print("Enter the bookingID for the booking needed to be cancelled.\n");
                 input = scanner.nextLine(); // gets bookingID for booking needed to be cancelled
+                Booking bookingToRemove = null;
                 for (Booking booking : bookings) {
                     if (booking.getBookingID().equals(input)) {
-                        bookings.remove(booking);
+                        bookingToRemove = booking;
                         break;
                     }
                 }
+    
+                if (bookingToRemove != null) {
+                    Client associatedClient = bookingToRemove.getClient();
+                    associatedClient.removeBooking(bookingToRemove);
+                    bookings.remove(bookingToRemove);
+                    System.out.println("The following Booking ID has been cancelled: " + input);
+                } else {
+                    System.out.println("Booking not found.");
+                }
+            }
                 int x = 0;
                 while (x != Integer.parseInt(input)) {
 
@@ -202,4 +213,3 @@ public class ReservationREPL {
         }
         scanner.close();
     }
-}
