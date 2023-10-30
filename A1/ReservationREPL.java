@@ -177,10 +177,12 @@ public class ReservationREPL {
             } else if (input.equals("4")) { // CANCEL A BOOKING
                 System.out.print("Enter the bookingID for the booking needed to be cancelled.\n");
                 input = scanner.nextLine(); // gets bookingID for booking needed to be cancelled
-                // remove money from revenue
-                // remove booking from the booking list and the user booking list based on
-                // booking id
-                // iterate through the lists untill the reffered to booking id matches
+                for (Booking booking : bookings) {
+                    if (booking.getBookingID().equals(input)) {
+                        bookings.remove(booking);
+                        break;
+                    }
+                }
                 int x = 0;
                 while (x != Integer.parseInt(input)) {
 
