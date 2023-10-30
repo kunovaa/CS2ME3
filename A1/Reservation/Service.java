@@ -16,7 +16,7 @@ public class Service {
     }
 
     public void setCost(double newcost) {
-        cost = newcost;
+        this.cost = newcost;
 
     }
 
