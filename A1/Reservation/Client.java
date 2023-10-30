@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
-    private int clientID;
+    private String clientID;
     private String name;
     private String contactInfo;
     private Membership membershipType;
     private List<Booking> bookings = new ArrayList<>();
 
-    public Client(int clientID, String name, String contactInfo, Membership membershipType) {
+    public Client(String clientID, String name, String contactInfo, Membership membershipType) {
         this.clientID = clientID;
         this.name = name;
         this.contactInfo = contactInfo;
         this.membershipType = membershipType;
     }
 
-    public int getClientID() {
+    public String getClientID() {
         return clientID;
     }
 

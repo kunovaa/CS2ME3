@@ -15,6 +15,16 @@ public class ReservationREPL {
         return bookingID;
     }
 
+    public static String generateUniqueClientID() {
+        // You can use a combination of random numbers and a timestamp
+        // to create a unique booking ID
+        long timestamp = System.currentTimeMillis();
+        int randomInt = (int) (Math.random() * 10000);
+        String clientID = timestamp + "-" + randomInt;
+
+        return clientID;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -22,7 +32,8 @@ public class ReservationREPL {
         List<Car> cars = new ArrayList<>();
         List<Vacation> vacations = new ArrayList<>();
         List<Booking> bookings = new ArrayList<>();
-        List<Service> services = new ArrayList<>(); // list for the services in a singular booking
+
+        List<Client> clients = new ArrayList<>(); // list of all clients
 
         while (true) {
             System.out.print(
@@ -80,12 +91,51 @@ public class ReservationREPL {
                             "|" + vacation.getCountry() + "|" + vacation.getCity() + "|" + vacation.getSeason() + "|");
                 }
             } else if (input.equals("3")) { // PLACE A BOOKING
+                // get user info
+                Client client = new Client(generateUniqueClientID(), "John", "No info", Membership.REGULAR); // handles
+                                                                                                             // errors
+                                                                                                             // //change
+                                                                                                             // later
+                                                                                                             // maybe
+                System.out.println("Enter userID. If you do not have one Enter (0)");
+                input = scanner.nextLine();
+                if (input.equals("0"))// create a new client
+                {
+                    System.out.println("Enter name. ");
+                    String name = scanner.nextLine();
+                    System.out.println("Enter contact info. ");
+                    String contactInfo = scanner.nextLine();
+                    System.out.println("Choose membership: Regular(1), Silver(2), Gold(3)");
+                    String membership = scanner.nextLine();
+                    Membership membershipType = Membership.REGULAR;
+                    if (membership.equals("1")) {
+                        membershipType = Membership.REGULAR;
+                    } else if (membership.equals("2")) {
+                        membershipType = Membership.SILVER;
+                    } else if (membership.equals("3")) {
+                        membershipType = Membership.GOLD;
+                    }
 
+                    client = new Client(generateUniqueClientID(), name, contactInfo, membershipType); // create
+                                                                                                      // new
+                                                                                                      // client
+                    clients.add(client); // add client to clients list
+                } else {
+                    for (Client possibleclient : clients) { // finds client through client list
+                        if (possibleclient.getClientID().equals(input)) {
+                            client = possibleclient;
+                            break;
+                        }
+                    }
+                }
+
+                // get info to make booking
                 System.out.println("Enter Start date. ");
                 String startDate = scanner.nextLine();
                 System.out.println("Enter End date. ");
                 String endDate = scanner.nextLine();
                 String bookingID = generateUniqueBookingID();
+                List<Service> services = new ArrayList<>(); // list for the services in a singular booking
 
                 while (true) {
                     System.out.println("Would you like to book another item? Enter 'y' for yes and 'n' for no.\n");
@@ -95,21 +145,35 @@ public class ReservationREPL {
                     }
                     System.out.println("Book a Vacation (1)\nBook a Car (2)\n");
                     input = scanner.nextLine();
+                    int index = 0;
                     if (input.equals("1")) {
+                        for (Vacation vacation : vacations) {
+                            System.out.println(
+                                    "|" + vacation.getCountry() + "|" + vacation.getCity() + "|" + vacation.getSeason()
+                                            + "| ENTER (" + index + ")");
+                            index += 1;
+                        }
+                        System.out.println("Enter which Vacation you want to book. \n");
+                        index = Integer.parseInt(scanner.nextLine());
+                        services.add(vacations.get(index));
 
                     } else if (input.equals("2")) {
                         System.out.println("\nCARS:\n");
-                        int index = 0;
+
                         for (Car car : cars) {
                             System.out.println(
                                     "|" + car.getYear() + "|" + car.getMake() + "|" + car.getNumberOfDoors()
                                             + " door| ENTER (" + index + ")");
                             index += 1;
                         }
+                        System.out.println("Enter which Car you want to book. \n");
+                        index = Integer.parseInt(scanner.nextLine());
+                        services.add(cars.get(index));
                     }
-                    // add the service to the booking list
-
-                }
+                } // end of while loop for booking more items
+                Booking booking = new Booking(bookingID, startDate, endDate, services, client);
+                bookings.add(booking); // adds booking to list of all bookings
+                client.addBooking(booking);// adds booking to clients list of bookings
             } else if (input.equals("4")) { // CANCEL A BOOKING
                 System.out.print("Enter the bookingID for the booking needed to be cancelled.\n");
                 input = scanner.nextLine(); // gets bookingID for booking needed to be cancelled
@@ -124,6 +188,10 @@ public class ReservationREPL {
 
             } else if (input.equals("5")) {
                 // list all the bookings from booking list
+                System.out.println("All Bookings:\n");
+                for (Booking booking : bookings) {
+                    System.out.println(booking.getBookingID());
+                }
             } else if (input.equals("6")) {
                 // list the user bookings from the client class
             } else if (input.equals("7")) {
