@@ -8,7 +8,8 @@ public class ReservationREPL {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        List<Service> services = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
+        List<Vacation> vacations = new ArrayList<>();
 
         while (true) {
             System.out.print(
@@ -24,31 +25,45 @@ public class ReservationREPL {
                 System.out.print("\nCreate a new item.\n Create a car(1) \n Create a Vacation(2)\n");
                 input = scanner.nextLine();
                 if (input.equals("1")) { // CREATE A CAR
-                    System.out.print("What is the make of the car?");
+                    // get required info
+                    System.out.print("What is the make of the car? ");
                     String make = scanner.nextLine();
-                    System.out.print("What is the year?");
+                    System.out.print("What is the year? ");
                     int year = Integer.parseInt(scanner.nextLine());
-                    System.out.print("How many doors does the car have?");
+                    System.out.print("How many doors does the car have? ");
                     int numberOfDoors = Integer.parseInt(scanner.nextLine());
-                    System.out.print("What is the licence Plate?");
+                    System.out.print("What is the licence Plate? ");
                     String licencePlate = scanner.nextLine();
-                    System.out.println("NEW CAR CREATED!");
 
-                    Car newcar = new Car(licencePlate, year, make, numberOfDoors);
-                    services.add(newcar); // adds the car to the services list
+                    Car newcar = new Car(licencePlate, year, make, numberOfDoors); // create the car
+                    cars.add(newcar); // adds the car to car list
+                    System.out.println("NEW CAR CREATED!\n");
+                } else if (input.equals("2")) { // CREATE A VACATION
+                    // get required info
+                    System.out.println("Enter the country. ");
+                    String country = scanner.nextLine();
+                    System.out.println("Enter the city. ");
+                    String city = scanner.nextLine();
+                    System.out.println("Enter the season. ");
+                    String season = scanner.nextLine();
 
-                } // creating a car ,,,, make new object car then set the license plate year make
-                  // and number of doors
-                else if (input.equals("2")) { // CREATE A VACATION
+                    Vacation newvacation = new Vacation(country, city, season); // create the vacation
+                    vacations.add(newvacation); // adds the vacation to vacation list
                     System.out.println("NEW VACATION CREATED!");
-
-                } // creating a vacation
+                }
                 continue;// go back to main menu
+
             } else if (input.equals("2")) { // LIST ITEMS
                 // list all the created items
                 // print the list that the items were put in
-                for (Service service : services) {
-                    System.out.println(service);
+                System.out.println("\nCARS:\n");
+                for (Car car : cars) {
+                    System.out.println("|" + car.getYear() + "|" + car.getMake() + "|" + car.getNumberOfDoors() + "|");
+                }
+                System.out.println("\nVACATIONS:\n");
+                for (Vacation vacation : vacations) {
+                    System.out.println(
+                            "|" + vacation.getCountry() + "|" + vacation.getCity() + "|" + vacation.getSeason() + "|");
                 }
             } else if (input.equals("3")) { // BOOK NEW ITEM
                 // list all the items

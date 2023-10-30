@@ -6,12 +6,11 @@ public class Vacation extends Service {
     private String season;
     private double cost;
 
-    public Vacation(String country, String city, String season, double cost) {
+    public Vacation(String country, String city, String season) {
         super();
         this.country = country;
         this.city = city;
         this.season = season;
-        this.cost = cost;
     }
 
     public String getCountry() {
