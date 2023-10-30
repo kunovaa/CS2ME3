@@ -92,7 +92,8 @@ public class ReservationREPL {
                 }
             } else if (input.equals("3")) { // PLACE A BOOKING
                 // get user info
-                Client client = new Client(generateUniqueClientID(), "John", "No info", Membership.REGULAR); // handles
+                String birthDate = scanner.nextLine();
+                Client client = new Client(generateUniqueClientID(), "John", "No info", birthDate, Membership.REGULAR); // handles
                                                                                                              // errors
                                                                                                              // //change
                                                                                                              // later
@@ -116,7 +117,7 @@ public class ReservationREPL {
                         membershipType = Membership.GOLD;
                     }
 
-                    client = new Client(generateUniqueClientID(), name, contactInfo, membershipType); // create
+                    client = new Client(generateUniqueClientID(), name, contactInfo, birthDate, membershipType); // create
                                                                                                       // new
                                                                                                       // client
                     clients.add(client); // add client to clients list
