@@ -40,4 +40,8 @@ public class Client {
     public void addBooking(Booking booking) {
         bookings.add(booking);
     }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
 }
