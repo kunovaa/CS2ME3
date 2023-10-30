@@ -216,9 +216,13 @@ public class ReservationREPL {
                     }
                 }
             } else if (input.equals("7")) {
-                // output the calculated revenue
+                double revenue = 0;
+                for (Booking booking : bookings) {
+                    revenue += booking.getTotalCost();
+                }
+                System.out.println("Total Revenue: $" + revenue);
+            }
             }
             scanner.close();
         }
     }
-}
