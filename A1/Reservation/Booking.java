@@ -1,19 +1,25 @@
 package Reservation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Booking {
-    private int bookingID;
+    private String bookingID;
     private String startDate;
     private String endDate;
     private double totalCost;
+    private List<Service> services = new ArrayList<>();
+    private Client client;
 
-    public Booking(int bookingID, String startDate, String endDate, double totalCost) {
+    public Booking(String bookingID, String startDate, String endDate, List<Service> services, Client client) {
         this.bookingID = bookingID;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.totalCost = totalCost;
+        this.services = services;
+        this.client = client;
     }
 
-    public int getBookingID() {
+    public String getBookingID() {
         return bookingID;
     }
 
@@ -23,6 +29,14 @@ public class Booking {
 
     public String getEndDate() {
         return endDate;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void bookService(Service service) {
+        services.add(service);
     }
 
     public double getTotalCost() {
