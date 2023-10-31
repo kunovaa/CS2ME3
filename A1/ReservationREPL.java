@@ -46,7 +46,7 @@ public class ReservationREPL {
             } // quitting the application
 
             if (input.equals("1")) { // CREATE A NEW ITEM
-                System.out.print("\nCreate a new item.\n Create a car(1) \n Create a Vacation(2)\n");
+                System.out.print("\nCreate a new item.\nCreate a car(1)\nCreate a Vacation(2)\n");
                 input = scanner.nextLine();
                 if (input.equals("1")) { // CREATE A CAR
                     // get required info
@@ -58,8 +58,11 @@ public class ReservationREPL {
                     int numberOfDoors = Integer.parseInt(scanner.nextLine());
                     System.out.print("What is the licence Plate? ");
                     String licencePlate = scanner.nextLine();
+                    System.out.println("What is the cost? ");
+                    double cost = Double.parseDouble(scanner.nextLine());
 
                     Car newcar = new Car(licencePlate, year, make, numberOfDoors); // create the car
+                    newcar.setCost(cost); // set cost of car
                     cars.add(newcar); // adds the car to car list
                     System.out.println("NEW CAR CREATED!\n");
                 } else if (input.equals("2")) { // CREATE A VACATION
@@ -70,8 +73,11 @@ public class ReservationREPL {
                     String city = scanner.nextLine();
                     System.out.println("Enter the season. ");
                     String season = scanner.nextLine();
+                    System.out.println("What is the cost? ");
+                    double cost = Double.parseDouble(scanner.nextLine());
 
                     Vacation newvacation = new Vacation(country, city, season); // create the vacation
+                    newvacation.setCost(cost);
                     vacations.add(newvacation); // adds the vacation to vacation list
                     System.out.println("NEW VACATION CREATED!");
                 }
@@ -83,21 +89,22 @@ public class ReservationREPL {
                 System.out.println("\nCARS:\n");
                 for (Car car : cars) {
                     System.out.println(
-                            "|" + car.getYear() + "|" + car.getMake() + "|" + car.getNumberOfDoors() + " door|");
+                            "|" + car.getYear() + "|" + car.getMake() + "|" + car.getNumberOfDoors() + " door|$"
+                                    + car.getCost() + "|");
                 }
                 System.out.println("\nVACATIONS:\n");
                 for (Vacation vacation : vacations) {
                     System.out.println(
-                            "|" + vacation.getCountry() + "|" + vacation.getCity() + "|" + vacation.getSeason() + "|");
+                            "|" + vacation.getCountry() + "|" + vacation.getCity() + "|" + vacation.getSeason() + "|$"
+                                    + vacation.getCost() + "|");
                 }
             } else if (input.equals("3")) { // PLACE A BOOKING
                 // get user info
-                String birthDate = scanner.nextLine();
-                Client client = new Client(generateUniqueClientID(), "John", "No info", birthDate, Membership.REGULAR); // handles
-                                                                                                             // errors
-                                                                                                             // //change
-                                                                                                             // later
-                                                                                                             // maybe
+                Client client = new Client(generateUniqueClientID(), "John", "No info", "No info", Membership.REGULAR); // handles
+                // errors
+                // //change
+                // later
+                // maybe
                 System.out.println("Enter userID. If you do not have one Enter (0)");
                 input = scanner.nextLine();
                 if (input.equals("0"))// create a new client
@@ -106,6 +113,8 @@ public class ReservationREPL {
                     String name = scanner.nextLine();
                     System.out.println("Enter contact info. ");
                     String contactInfo = scanner.nextLine();
+                    System.out.println("Enter birthdate. ");
+                    String birthDate = scanner.nextLine();
                     System.out.println("Choose membership: Regular(1), Silver(2), Gold(3)");
                     String membership = scanner.nextLine();
                     Membership membershipType = Membership.REGULAR;
@@ -118,8 +127,8 @@ public class ReservationREPL {
                     }
 
                     client = new Client(generateUniqueClientID(), name, contactInfo, birthDate, membershipType); // create
-                                                                                                      // new
-                                                                                                      // client
+                    // new
+                    // client
                     clients.add(client); // add client to clients list
                 } else {
                     for (Client possibleclient : clients) { // finds client through client list
@@ -129,6 +138,8 @@ public class ReservationREPL {
                         }
                     }
                 }
+                // Print out clientid
+                System.out.println("CLIENTID:" + client.getClientID() + "\n");
 
                 // get info to make booking
                 System.out.println("Enter Start date. ");
@@ -151,7 +162,7 @@ public class ReservationREPL {
                         for (Vacation vacation : vacations) {
                             System.out.println(
                                     "|" + vacation.getCountry() + "|" + vacation.getCity() + "|" + vacation.getSeason()
-                                            + "| ENTER (" + index + ")");
+                                            + "|$" + vacation.getCost() + "|ENTER (" + index + ")");
                             index += 1;
                         }
                         System.out.println("Enter which Vacation you want to book. \n");
@@ -164,7 +175,7 @@ public class ReservationREPL {
                         for (Car car : cars) {
                             System.out.println(
                                     "|" + car.getYear() + "|" + car.getMake() + "|" + car.getNumberOfDoors()
-                                            + " door| ENTER (" + index + ")");
+                                            + " door|" + car.getCost() + "| ENTER (" + index + ")");
                             index += 1;
                         }
                         System.out.println("Enter which Car you want to book. \n");
@@ -173,6 +184,9 @@ public class ReservationREPL {
                     }
                 } // end of while loop for booking more items
                 Booking booking = new Booking(bookingID, startDate, endDate, services, client);
+                // set the cost of the booking
+                booking.calculateTotalCost();
+
                 bookings.add(booking); // adds booking to list of all bookings
                 client.addBooking(booking);// adds booking to clients list of bookings
             } else if (input.equals("4")) { // CANCEL A BOOKING
@@ -223,7 +237,7 @@ public class ReservationREPL {
                 }
                 System.out.println("Total Revenue: $" + revenue);
             }
-            }
-            scanner.close();
         }
+        scanner.close();
     }
+}

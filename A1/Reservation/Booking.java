@@ -47,9 +47,13 @@ public class Booking {
         return totalCost;
     }
 
-    public double calculateTotalCost() {
+    public void calculateTotalCost() {
         // Calculation of total cost
-        return totalCost;
+        double total = 0;
+        for (Service service : services) {
+            total += service.getCost();
+        }
+        this.totalCost = total;
     }
 
 }
