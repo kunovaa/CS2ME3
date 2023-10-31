@@ -32,8 +32,7 @@ public class ReservationREPL {
         List<Car> cars = new ArrayList<>();
         List<Vacation> vacations = new ArrayList<>();
         List<Booking> bookings = new ArrayList<>();
-
-        List<Client> clients = new ArrayList<>(); // list of all clients
+        List<Client> clients = new ArrayList<>();
 
         while (true) {
             System.out.print(
