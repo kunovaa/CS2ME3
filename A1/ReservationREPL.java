@@ -9,7 +9,7 @@ public class ReservationREPL {
         // You can use a combination of random numbers and a timestamp
         // to create a unique booking ID
         long timestamp = System.currentTimeMillis();
-        int randomInt = (int) (Math.random() * 1000);
+        int randomInt = (int) (Math.random() * 100);
         String bookingID = timestamp + "-" + randomInt;
 
         return bookingID;
@@ -19,7 +19,7 @@ public class ReservationREPL {
         // You can use a combination of random numbers and a timestamp
         // to create a unique booking ID
         long timestamp = System.currentTimeMillis();
-        int randomInt = (int) (Math.random() * 10000);
+        int randomInt = (int) (Math.random() * 10);
         String clientID = timestamp + "-" + randomInt;
 
         return clientID;

@@ -50,9 +50,11 @@ public class Booking {
     public void calculateTotalCost() {
         // Calculation of total cost
         double total = 0;
+        double discount = 1 - (client.getMembershipType().getDiscountPercentage() / 100);
         for (Service service : services) {
             total += service.getCost();
         }
+        total = total * discount;
         this.totalCost = total;
     }
 
