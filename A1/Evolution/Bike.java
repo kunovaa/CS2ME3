@@ -1,6 +1,8 @@
 package Evolution;
 
-public class Bike {
+import Reservation.Service;
+
+public class Bike extends Service {
     private String licensePlate;
     private String make;
     private int year;

@@ -5,13 +5,13 @@ public enum Membership {
     SILVER(10),
     GOLD(20);
 
-    private final int discountPercentage;
+    private final double discountPercentage;
 
-    Membership(int discountPercentage) {
+    Membership(double discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
 
-    public int getDiscountPercentage() {
+    public double getDiscountPercentage() {
         return discountPercentage;
     }
 }
