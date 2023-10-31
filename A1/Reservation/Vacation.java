@@ -5,6 +5,7 @@ public class Vacation extends Service {
     private String city;
     private String season;
     private double cost;
+    private String serviceType = "Vacation";
 
     public Vacation(String country, String city, String season) {
         super();
