@@ -6,7 +6,8 @@ import Reservation.*;
 public class ReservationREPLSingleton {
 
     public static void main(String[] args) {
-        getInstance().startReservationSystem();
+        getInstance();
+        ReservationREPLSingleton.startReservationSystem();
     }
 
     private ReservationREPLSingleton() {
@@ -14,11 +15,11 @@ public class ReservationREPLSingleton {
     }
 
     // Singleton class
-    private static ReservationREPL instance;
+    private static ReservationREPLSingleton instance;
 
-    public static ReservationREPL getInstance() {
+    public static ReservationREPLSingleton getInstance() {
         if (instance == null) {
-            instance = new ReservationREPL();
+            instance = new ReservationREPLSingleton();
         }
         return instance;
     }
