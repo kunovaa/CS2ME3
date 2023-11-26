@@ -5,7 +5,6 @@ public class Car extends Service {
     private int year;
     private String make;
     private int numberOfDoors;
-    private String serviceType = "Car";
 
     public Car(String licensePlate, int year, String make, int numberOfDoors) {
         super();

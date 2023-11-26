@@ -6,7 +6,6 @@ public class Bike extends Service {
     private String licensePlate;
     private String make;
     private int year;
-    private String ServiceType = "Bike";
 
     public Bike(String licensePlate, String make, int year) {
         this.licensePlate = licensePlate;

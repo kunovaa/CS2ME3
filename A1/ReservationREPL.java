@@ -239,4 +239,7 @@ public class ReservationREPL {
         }
         scanner.close();
     }
+
+    public void startReservationSystem() {
+    }
 }
