@@ -6,10 +6,9 @@ import Reservation.*;
 public class ReservationREPLSingleton {
 
     public static void main(String[] args) {
-        getInstance();
-        ReservationREPLSingleton.startReservationSystem();
+        ReservationREPLSingleton.getInstance().startReservationSystem();
     }
-
+    
     private ReservationREPLSingleton() {
         // private constructor to prevent instantiation
     }
@@ -44,7 +43,7 @@ public class ReservationREPLSingleton {
         return clientID;
     }
 
-    public static void startReservationSystem() {
+    public void startReservationSystem() {
         Scanner scanner = new Scanner(System.in);
 
         // LISTS
@@ -118,11 +117,7 @@ public class ReservationREPLSingleton {
                 }
             } else if (input.equals("3")) { // PLACE A BOOKING
                 // get user info
-                Client client = new Client(generateUniqueClientID(), "John", "No info", "No info", Membership.REGULAR); // handles
-                // errors
-                // //change
-                // later
-                // maybe
+                Client client = new Client(generateUniqueClientID(), "John", "No info", "No info", Membership.REGULAR);
                 System.out.println("Enter userID. If you do not have one Enter (0)");
                 input = scanner.nextLine();
                 if (input.equals("0"))// create a new client
